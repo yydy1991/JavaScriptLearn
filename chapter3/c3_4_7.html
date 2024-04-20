@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Symbol类型</title>
+	</head>
+	<body>
+		<div>
+			<h1>Symbol</h1>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	// 1 基本用法
+	let sym = Symbol();
+	console.log(typeof sym);
+	let sym2 = Symbol();
+	console.log(sym == sym2);
+
+	let sym3 = Symbol("foo");
+	let sym4 = Symbol("foo");
+	console.log(sym3 == sym4);
+
+	console.log(sym);
+	console.log(sym3);
+
+	// let sym5 = new Symbol(); error
+
+	console.log(Object(sym4));
+	console.log(typeof Object(sym4));
+
+	// 全局符号注册表
+	let sym11 = Symbol.for("foo");
+	let sym12 = Symbol.for("foo");
+	console.log(typeof sym11);
+	console.log(sym11 == sym12);
+	console.log(sym11 == sym3);
+
+	let sym13 = Symbol.for();
+	console.log(sym13);
+
+	console.log(Symbol.keyFor(sym11));
+	console.log(Symbol.keyFor(sym3));
+	// console.log(Symbol.keyFor(123)); error
+
+	// 3 使用符号作为属性
+	let s1 = Symbol("foo"),
+		s2 = Symbol("bar"),
+		s3 = Symbol("baz"),
+		s4 = Symbol("qux"),
+		s5 = Symbol("abd");
+	let o = {
+		[s1]: 'foo val'
+	}
+	o[s2] = 'bar val';
+	console.log(o);
+	Object.defineProperty(o, s3, {
+		value: 'baz val'
+	})
+
+	Object.defineProperties(o, {
+		[s4]: {
+			value: 'qux val'
+		},
+		[s5]: {
+			value: 'abd val'
+		}
+	})
+	console.log(o);
+
+	let o1 = {
+		[s1]: 'foo val',
+		[s2]: 'bar val',
+		baz: 'baz val',
+		qux: 'qux val'
+	}
+	console.log(o1);
+
+	console.log(Object.getOwnPropertySymbols(o1));
+	console.log(Object.getOwnPropertyNames(o1));
+	console.log(Object.getOwnPropertyDescriptors(o1));
+	console.log(Reflect.ownKeys(o1));
+</script>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>script元素</title>
+		
+	</head>
+	<body>
+		<p>script元素</p>
+		<script>
+			function sayHi() {
+				console.log("Hi!");
+			}
+
+			function sayHi2() {
+				// 需要转译‘\’
+				console.log("<\/script>");
+			}
+
+			sayHi();
+			sayHi2();
+		</script>
+		<!-- 要包含外部文件中的 JavaScript，就必须使用 src 属性。 -->
+		<script src="js/example.js">
+			// scr 属性内的js代码不会执行
+			console.log("while not run.");
+			// src 内容可以是URL src="http://www.somewhere.com/afile.js" 
+			// 发起GET请求
+		</script>
+		<script>
+			// 2.1.4 动态加载脚本
+			let script = document.createElement('script');
+			script.src = 'js/gibberish.js';
+			// 明确为同步加载
+			script.async = false;
+			document.head.appendChild(script);
+		</script>
+	</body>
+
+</html>
