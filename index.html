@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-	</head>
-	<body>
-		
-	</body>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    let d = {
+        set id(x) {
+            console.log(x);
+        }
+    }
+
+    Object.assign(d, {id: 'first'}, {id: 'second'})
+
+
+    let name = "123";
+    let age = 111;
+    // 属性值简写
+    let a = {
+        name, age
+    }
+    console.log(a);
+</script>
 </html>
